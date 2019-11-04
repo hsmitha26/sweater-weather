@@ -11,7 +11,7 @@ class Api::V1::ForecastController < ApplicationController
     hourly_weather_data = parsed_forecast[:hourly][:data]
     daily_weather_data = parsed_forecast[:daily][:data]
 
-    p parsed_forecast
+    # p parsed_forecast
     # binding.pry
   end
 end
