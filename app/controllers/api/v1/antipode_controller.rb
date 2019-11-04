@@ -12,6 +12,7 @@ class Api::V1::AntipodeController < ApplicationController
     antipode_latitude = parse_amypode_response[:lat]
     antipode_longitude = parse_amypode_response[:long]
 
+    antipode_forecast = DarkSkyService.new(antipode_latitude, antipode_longitude)
     binding.pry
   end
 end
