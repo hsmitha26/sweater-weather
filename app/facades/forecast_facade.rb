@@ -1,6 +1,7 @@
 class ForecastFacade
-  attr_reader :forecast_response
-  def initialize(latitude, longitude)
+  attr_reader :forecast_response, :location
+  def initialize(location)
+    @location = location
     @forecast_response = response(latitude, longitude)
   end
 
@@ -11,5 +12,13 @@ class ForecastFacade
 
   def parse_response(response)
     JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def latitude(location)
+    LocationFacade.new(location).latitude
+  end
+
+  def longitude(location)
+    LocationFacade.new(location).longitude
   end
 end
