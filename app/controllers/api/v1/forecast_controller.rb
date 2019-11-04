@@ -5,13 +5,12 @@ class Api::V1::ForecastController < ApplicationController
 
     parsed_forecast = ForecastFacade.new(latitude, longitude).forecast_response
 
-    # render json: ForecastSerializer.new(parsed_forecast)
-
-    current_weather_data = parsed_forecast[:currently]
-    hourly_weather_data = parsed_forecast[:hourly][:data]
-    daily_weather_data = parsed_forecast[:daily][:data]
-
-    # p parsed_forecast
-    # binding.pry
+    render json: ForecastSerializer.new(Forecast.new(parsed_forecast))
   end
 end
+
+#need forecast PORO where data is formatted before passing to serializer. Need hashes for each section (current, hourly, daily)
+#render json: needs an :id attribute.  Where to put it? Even though it's not needed for output?
+#refactor to call LocationFacade inside ForecastFacade.  It should pass the #coordinates directly to ForecastFacade.
+#refactor to use private methods in facades.
+# refactor to use memoization in facades.
