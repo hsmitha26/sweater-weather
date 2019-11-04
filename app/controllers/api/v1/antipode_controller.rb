@@ -9,6 +9,9 @@ class Api::V1::AntipodeController < ApplicationController
                   faraday.params[:long] = longitude
                 end
     parse_amypode_response = JSON.parse(amypode_connection.body, symbolize_names: true)[:data][:attributes]
+    antipode_latitude = parse_amypode_response[:lat]
+    antipode_longitude = parse_amypode_response[:long]
+
     binding.pry
   end
 end
