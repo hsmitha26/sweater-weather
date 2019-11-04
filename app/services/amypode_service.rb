@@ -7,6 +7,5 @@ class AmypodeService
                   faraday.params[:lat] = latitude
                   faraday.params[:long] = longitude
                 end
-    # binding.pry
   end
 end
