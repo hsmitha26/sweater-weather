@@ -10,8 +10,6 @@ class LocationFacade
     parse_response(response)
   end
 
-  private
-
   def parse_response(response)
     JSON.parse(response.body, symbolize_names: true)[:results][0][:geometry][:location]
   end

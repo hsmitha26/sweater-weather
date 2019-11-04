@@ -5,12 +5,13 @@ class Api::V1::ForecastController < ApplicationController
 
     parsed_forecast = ForecastFacade.new(latitude, longitude).forecast_response
 
-    render json: ForecastSerializer.new(parsed_forecast)
+    # render json: ForecastSerializer.new(parsed_forecast)
 
     current_weather_data = parsed_forecast[:currently]
     hourly_weather_data = parsed_forecast[:hourly][:data]
     daily_weather_data = parsed_forecast[:daily][:data]
 
-    binding.pry
+    p parsed_forecast
+    # binding.pry
   end
 end
