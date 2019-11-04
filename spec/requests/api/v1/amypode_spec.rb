@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'api consumption' do
+describe 'api consume' do
   it "amypode" do
     location = 'Hong Kong'
     get "/api/v1/antipode?location=#{location}"
