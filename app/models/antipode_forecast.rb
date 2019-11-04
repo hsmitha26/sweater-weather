@@ -1,10 +1,10 @@
 class AntipodeForecast
   attr_reader :id, :location_name, :search_location
 
-  def initialize(location_name, forecast_data, search_location)
+  def initialize(search_location, forecast_data, antipode_city)
     @id = "101"
-    @forecast_data = forecast_data[:currently]
-    @location_name = location_name
+    @forecast_data = forecast_data
+    @location_name = antipode_city
     @search_location = search_location
     @forecast = forecast
   end
