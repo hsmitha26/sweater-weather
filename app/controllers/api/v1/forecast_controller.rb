@@ -13,6 +13,8 @@ class Api::V1::ForecastController < ApplicationController
     key = ENV['dark_sky_api_key']
     forecast = Faraday.get("https://api.darksky.net/forecast/#{key}/#{latitude},#{longitude}")
     parsed_forecast = JSON.parse(forecast.body, symbolize_names: true)
-    binding.pry
+    current_weather_data = parsed_forecast[:currently]
+    hourly_weather_data = parsed_forecast[:hourly][:data]
+    daily_weather_data = parsed_forecast[:daily][:data]
   end
 end
