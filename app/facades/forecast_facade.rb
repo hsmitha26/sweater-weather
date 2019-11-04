@@ -5,8 +5,7 @@ class ForecastFacade
   end
 
   def response(latitude, longitude)
-    # response = ForecastService.new(latitude, longitude)
-    response = Faraday.get("https://api.darksky.net/forecast/#{ENV['dark_sky_api_key']}/#{latitude},#{longitude}")
+    response = DarkSkyService.new(latitude, longitude).forecast_response
     parse_response(response)
   end
 
