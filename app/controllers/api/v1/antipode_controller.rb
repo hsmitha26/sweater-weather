@@ -15,10 +15,10 @@ class Api::V1::AntipodeController < ApplicationController
 #refactor: move to AmypodeFacade
     reverse_geocode_data = ReverseGeocodeService.new(antipode_latitude, antipode_longitude).parsed_response
 
-x = AntipodeForecast.new(params[:location], antipode_parsed_forecast, reverse_geocode_data)
-y =
-render json: AntipodeSerializer.new(x)
-binding.pry
+data_prep = AntipodeForecast.new(params[:location], antipode_parsed_forecast, reverse_geocode_data)
+
+render json: AntipodeSerializer.new(data_prep)
+# binding.pry
 
     #serialized JSON
     #need the following:
