@@ -1,20 +1,18 @@
 class AmypodeFacade
-  attr_reader :amypode_response, :antipode_parsed_forecast, :antipode_city
+  attr_reader :antipode_parsed_forecast, :antipode_city
 
   def initialize(latitude, longitude)
     @amypode_response = response(latitude, longitude)
+    @latitude = @amypode_response[:lat]
+    @longitude = @amypode_response[:long]
   end
 
   def antipode_city
-    lat = @amypode_response[:lat]
-    long = @amypode_response[:long]
-    ReverseGeocodeService.new(lat, long).parsed_response
+    ReverseGeocodeService.new(@latitude, @longitude).parsed_response
   end
 
   def antipode_parsed_forecast
-    lat = @amypode_response[:lat]
-    long = @amypode_response[:long]
-    antipode_forecast = ForecastFacade.new(lat, long).forecast_response
+    antipode_forecast = ForecastFacade.new(@latitude, @longitude).forecast_response
     antipode_forecast[:currently]
   end
 
