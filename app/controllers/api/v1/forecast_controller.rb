@@ -9,6 +9,7 @@ class Api::V1::ForecastController < ApplicationController
   end
 end
 
-#refactor to call LocationFacade inside ForecastFacade.  It should pass the #coordinates directly to ForecastFacade.
+# refactor to call LocationFacade inside ForecastFacade.  It should pass the #coordinates directly to ForecastFacade.
 #refactor to use private methods in facades.
 # refactor to use memoization in facades.
+# refactor to format time, etc.?
