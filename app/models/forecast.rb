@@ -4,12 +4,12 @@ class Forecast
   def initialize(parsed_forecast)
     @id = "0"
     @forecast_data = parsed_forecast
-    @current_weather_hash = current_weather_hash
-    @hourly_weather_hash = hourly_weather_hash
-    @daily_weather_hash = daily_weather_hash
+    @current_weather = current_weather
+    @hourly_weather = hourly_weather
+    @daily_weather = daily_weather
   end
 
-  def current_weather_hash
+  def current_weather
     {
      time: forecast_data[:currently][:time],
      summary: forecast_data[:currently][:summary],
@@ -24,7 +24,7 @@ class Forecast
     }
   end
 
-  def hourly_weather_hash
+  def hourly_weather
     forecast_data[:daily][:data][0..7].map do |day|
       { day: day[:time],
         time: day[:time],
@@ -37,7 +37,7 @@ class Forecast
     end
   end
 
-  def daily_weather_hash
+  def daily_weather
     forecast_data[:hourly][:data][0..11].map do |hour|
        { time: hour[:time],
          summary: hour[:summary],
