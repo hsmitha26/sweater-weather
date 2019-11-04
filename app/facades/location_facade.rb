@@ -6,7 +6,7 @@ class LocationFacade
   end
 
   def response(location)
-    response = GeocodeService.new(location).geocode_response
+    response = GeocodeService.new(location).connection
     parse_response(response)
   end
 

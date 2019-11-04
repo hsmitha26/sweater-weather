@@ -5,7 +5,7 @@ class ForecastFacade
   end
 
   def response(latitude, longitude)
-    response = DarkSkyService.new(latitude, longitude).forecast_response
+    response = DarkSkyService.new(latitude, longitude).connection
     parse_response(response)
   end
 
