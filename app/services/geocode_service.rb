@@ -7,11 +7,12 @@ class GeocodeService
     @longitude = response[:lng]
   end
 
-  private
-  
+
   def response
     JSON.parse(connection.body, symbolize_names: true)[:results][0][:geometry][:location]
   end
+  
+  private
 
   def connection
     Faraday.get('https://maps.googleapis.com/maps/api/geocode/json?') do |faraday|
