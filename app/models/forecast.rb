@@ -4,8 +4,6 @@ class Forecast
   def initialize(parsed_forecast)
     @id = "0"
     @forecast_data = parsed_forecast
-    @hourly_weather = hourly_weather
-    @daily_weather = daily_weather
   end
 
   def current_weather
@@ -19,7 +17,6 @@ class Forecast
   end
 
   def hourly_weather
-    binding.pry
     @forecast_data[:hourly][:data][0..11].map do |hour|
       HourlyWeather.new(hour)
      end
