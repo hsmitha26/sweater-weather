@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'api consumption' do
+describe 'Consume APIs' do
   it "google geocode and dark sky" do
     location = 'Denver,CO'
     get "/api/v1/forecast?location=#{location}"

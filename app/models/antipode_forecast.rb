@@ -6,13 +6,9 @@ class AntipodeForecast
     @forecast_data = forecast_data
     @location_name = antipode_city
     @search_location = search_location
-    @forecast = forecast
   end
 
   def forecast
-    {
-      summary: @forecast_data[:summary],
-      current_temperature: @forecast_data[:temperature]
-    }
+    AntipodeCurrentWeather.new(@forecast_data)
   end
 end

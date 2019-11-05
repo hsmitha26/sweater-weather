@@ -1,15 +1,23 @@
 class ForecastFacade
-  attr_reader :forecast_response
-  def initialize(latitude, longitude)
-    @forecast_response = response(latitude, longitude)
+  attr_reader :response
+
+  def initialize(location)
+    @location = location
+    @latitude = geocode_latitude
+    @longitude = geocode_longitude
   end
 
-  def response(latitude, longitude)
-    response = DarkSkyService.new(latitude, longitude).connection
-    parse_response(response)
+  def response
+    DarkSkyService.new(@latitude, @longitude).response
   end
 
-  def parse_response(response)
-    JSON.parse(response.body, symbolize_names: true)
+  private
+  
+  def geocode_latitude
+    GeocodeService.new(@location).latitude
+  end
+
+  def geocode_longitude
+    GeocodeService.new(@location).longitude
   end
 end
