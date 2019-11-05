@@ -7,20 +7,17 @@ class ForecastFacade
     @longitude = geocode_longitude
   end
 
+  def response
+    DarkSkyService.new(@latitude, @longitude).response
+  end
+
+  private
+  
   def geocode_latitude
-    LocationFacade.new(@location).latitude
+    GeocodeService.new(@location).latitude
   end
 
   def geocode_longitude
-    LocationFacade.new(@location).longitude
-  end
-
-  def response
-    response = DarkSkyService.new(@latitude, @longitude).connection
-    parse_response(response)
-  end
-
-  def parse_response(response)
-    JSON.parse(response.body, symbolize_names: true)
+    GeocodeService.new(@location).longitude
   end
 end
