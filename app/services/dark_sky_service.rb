@@ -1,6 +1,4 @@
 class DarkSkyService
-  attr_reader :response
-
   def initialize(latitude, longitude)
     @latitude = latitude
     @longitude = longitude
@@ -11,7 +9,7 @@ class DarkSkyService
   end
 
   private
-  
+
   def connection
     Faraday.get("https://api.darksky.net/forecast/#{ENV['dark_sky_api_key']}/#{@latitude},#{@longitude}")
   end

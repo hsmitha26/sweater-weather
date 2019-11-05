@@ -11,7 +11,7 @@ class AmypodeFacade
   end
 
   def antipode_city
-    ReverseGeocodeService.new(@antipode_latitude, @antipode_longitude).parsed_response
+    ReverseGeocodeService.new(@antipode_latitude, @antipode_longitude).response
   end
 
   def antipode_parsed_forecast

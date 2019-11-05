@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Consume APIs: ' do
+describe 'Consume API: ' do
   it "Unsplash" do
     location = 'Denver,CO'
     get "/api/v1/backgrounds?location=#{location}"
