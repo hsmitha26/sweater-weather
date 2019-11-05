@@ -6,8 +6,11 @@ class BackgroundImageFacade
   end
 
   def unsplash_data
-    parsed_response[:results][0][:urls]
+    data = parsed_response[:results][0][:urls]
+    UnsplashImage.new(data)
   end
+
+  private
 
   def parsed_response
     JSON.parse(connection.body, symbolize_names: true)
