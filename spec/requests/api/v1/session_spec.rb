@@ -15,4 +15,13 @@ describe 'Create a Session' do
     expect(parsed_response[:api_key]).to eq(user.uuid)
     expect(response).to have_http_status(200)
   end
+
+  it "renders 404" do
+    params = {
+      "email": "whatever@example.com",
+    }
+    post "/api/v1/users", :params => params
+
+    expect(response).to have_http_status(404)
+  end
 end
