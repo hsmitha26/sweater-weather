@@ -9,5 +9,8 @@ describe 'Create User object' do
     }
     post "/api/v1/users", :params => params
     expect(response).to be_successful
+    
+    parsed_response = JSON.parse(response.body, symbolize_names: true)
+    expect(parsed_response).to have_key(:api_key)
   end
 end

@@ -1,11 +1,12 @@
 class Api::V1::UsersController < ApplicationController
+  require 'securerandom'
+
   def create
-    user = User.create!(user_params)
-    binding.pry
+    user = User.new(user_params)
     if user.save
-      #render json with api key
+      render json: UserApiSerializer.new(user).api_key, status: :created
     else
-      #render 404
+      render status: :not_found
     end
   end
 
