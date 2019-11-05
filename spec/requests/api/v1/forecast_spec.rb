@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe 'Consume APIs: Google Geocode and Dark Sky' do
-  it "renders parsed JSON object" do
+  it "renders serialized JSON object" do
     location = 'Denver,CO'
     get "/api/v1/forecast?location=#{location}"
-    
+
     expect(response).to be_successful
 
     parsed_response = JSON.parse(response.body, symbolize_names: true)
