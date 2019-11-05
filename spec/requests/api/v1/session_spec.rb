@@ -10,10 +10,9 @@ describe 'Create a Session' do
     post "/api/v1/sessions", :params => params
     expect(response).to be_successful
 
-    binding.pry
-
-    # parsed_response = JSON.parse(response.body, symbolize_names: true)
-    # expect(parsed_response).to have_key(:api_key)
-    # expect(response).to have_http_status(201)
+    parsed_response = JSON.parse(response.body, symbolize_names: true)
+    expect(parsed_response).to have_key(:api_key)
+    expect(parsed_response[:api_key]).to eq(user.uuid)
+    expect(response).to have_http_status(200)
   end
 end
