@@ -3,11 +3,10 @@ class ForecastFacade
     @location = location
     @latitude = geocode_latitude
     @longitude = geocode_longitude
-    @forecast = forecast_data
   end
 
   def forecast
-    Forecast.new(@forecast)
+    Forecast.new(forecast_data, @location)
   end
 
   private
