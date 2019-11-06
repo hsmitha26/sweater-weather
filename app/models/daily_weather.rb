@@ -11,6 +11,6 @@ class DailyWeather
   end
 
   def current_day(unix_time)
-    Time.at(unix_time).strftime("%m/%d/%y")
+    Time.at(unix_time).strftime("%m/%d")
   end
 end

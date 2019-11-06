@@ -1,5 +1,5 @@
 class Forecast
-  attr_reader :id, :location
+  attr_reader :id, :location, :tonight
 
   def initialize(parsed_forecast, location)
     @id = "0"
@@ -21,5 +21,11 @@ class Forecast
     @forecast_data[:hourly][:data][0..11].map do |hour|
       HourlyWeather.new(hour)
      end
+  end
+
+  def tonight
+    @forecast_data[:hourly][:data][0..11].map do |hour|
+      HourlyWeather.new(hour).tonight
+    end.compact
   end
 end

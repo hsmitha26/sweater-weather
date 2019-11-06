@@ -10,4 +10,10 @@ class HourlyWeather
   def current_time(unix_time)
     Time.at(unix_time).strftime("%I:%M %p")
   end
+
+  def tonight
+    if @time == "10:00 PM"
+      @summary
+    end
+  end
 end
