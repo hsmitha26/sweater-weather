@@ -18,7 +18,7 @@ describe 'User is authenticated using API key ' do
     expect(response).to have_http_status(200)
   end
 
-  xit "renders 401 if user's api_key is not authenticated" do
+  it "renders 401 if user's api_key is not authenticated" do
     user = User.create!(email: "whatever@example.com", password: "password", password_confirmation: 'password')
     user.update(uuid: "doesn'tmatch")
     params = {
@@ -31,7 +31,7 @@ describe 'User is authenticated using API key ' do
     expect(response).to have_http_status(401)
   end
 
-  xit "renders 404 if trip validations fail" do
+  it "renders 404 if trip validations fail" do
     user = User.create(email: "whatever@example.com", password: "password", password_confirmation: 'password')
     user.update(uuid: "abcdefgh12345")
     params = {
