@@ -1,4 +1,6 @@
 class TripFacade
+  attr_reader :travel_time
+
   def initialize(trip)
     @trip = trip
     @destination = trip.destination
@@ -6,6 +8,10 @@ class TripFacade
     @latitude = fetch_latitude
     @longitude = fetch_longitude
     @travel_time = travel_time_in_hours
+  end
+
+  def data_prep
+    TravelForecast.new(@travel_time, fetch_forecast_for_travel_time)
   end
 
   def fetch_forecast_for_travel_time

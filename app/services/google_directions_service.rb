@@ -6,14 +6,12 @@ class GoogleDirectionsService
 
   def travel_time
     parsed_response[:routes][0][:legs][0][:duration][:value]
-    # ((parsed_response.to_f)/3600).ceil
   end
 
   private
 
   def parsed_response
     JSON.parse(connection.body, symbolize_names: true)
-    # parsed_response[:routes][0][:legs][0][:duration][:value]
   end
 
   def connection
