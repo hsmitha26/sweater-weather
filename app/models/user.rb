@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  before_save :create_uuid
+  before_create :create_uuid
+
+  has_many :trips
 
   validates :email, uniqueness: true, presence: true
   validates_presence_of :password
