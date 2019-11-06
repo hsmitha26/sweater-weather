@@ -18,4 +18,30 @@ describe 'User is authenticated using API key ' do
 
     expect(response).to have_http_status(200)
   end
+
+  xit "renders 401 if user's api_key is not authenticated" do
+    user = User.create!(email: "whatever@example.com", password: "password", password_confirmation: 'password')
+    user.update(uuid: "doesn'tmatch")
+    params = {
+      "origin": "Denver,CO",
+      "destination": "Pueblo,CO",
+      "api_key": "abcdefgh12345"
+    }
+    post "/api/v1/road_trips", :params => params
+
+    expect(response).to have_http_status(401)
+  end
+
+  xit "renders 404 if trip validations fail" do
+    user = User.create(email: "whatever@example.com", password: "password", password_confirmation: 'password')
+    user.update(uuid: "abcdefgh12345")
+    params = {
+      "origin": "Denver,CO",
+      "destination": "",
+      "api_key": "abcdefgh12345"
+    }
+    post "/api/v1/road_trips", :params => params
+
+    expect(response).to have_http_status(404)
+  end
 end
