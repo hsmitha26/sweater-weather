@@ -1,18 +1,14 @@
-class GoogleDirectionsService
+class GoogleDirectionsService < BaseService
   def initialize(origin, destination)
     @origin = origin
     @destination = destination
   end
 
   def travel_time
-    parsed_response[:routes][0][:legs][0][:duration][:value]
+    parse_response[:routes][0][:legs][0][:duration][:value]
   end
 
   private
-
-  def parsed_response
-    JSON.parse(connection.body, symbolize_names: true)
-  end
 
   def connection
     Faraday.get('https://maps.googleapis.com/maps/api/directions/json?') do |faraday|

@@ -12,7 +12,7 @@ class ForecastFacade
   private
 
   def forecast_data
-    @_dark_sky_forecast_data ||= DarkSkyService.new(@latitude, @longitude).response
+    @_dark_sky_forecast_data ||= DarkSkyService.new(@latitude, @longitude).parse_response
   end
 
   def geocode_latitude

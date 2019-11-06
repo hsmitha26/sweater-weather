@@ -25,7 +25,7 @@ class TripFacade
   end
 
   def fetch_forecast
-    @_forecast ||= DarkSkyService.new(@latitude, @longitude).response
+    @_forecast ||= DarkSkyService.new(@latitude, @longitude).parse_response
   end
 
   def fetch_latitude

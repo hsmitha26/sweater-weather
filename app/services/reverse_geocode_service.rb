@@ -1,11 +1,11 @@
-class ReverseGeocodeService
+class ReverseGeocodeService < BaseService
   def initialize(latitude, longitude)
     @latitude = latitude
     @longitude = longitude
   end
 
   def response
-    JSON.parse(connection.body, symbolize_names: true)[:results][0][:formatted_address]
+    parse_response[:results][0][:formatted_address]
   end
 
   private
