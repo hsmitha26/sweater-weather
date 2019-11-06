@@ -7,7 +7,7 @@ describe 'User is authenticated using API key ' do
     params = {
       "origin": "Denver,CO",
       "destination": "Pueblo,CO",
-      "api_key": "abcdefgh12345"
+      "api_key": user.uuid
     }
     post "/api/v1/road_trips", :params => params
     expect(response).to be_successful
