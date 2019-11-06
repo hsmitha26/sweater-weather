@@ -6,8 +6,11 @@ class Api::V1::TripsController < ApplicationController
       trip = Trip.new(trip_params)
       trip.user_id = set_user.id
       if trip.save
-        #make call to directions api to get travel time
         #make call to geocode api to get lat/lng for destination
+        location = trip.destination
+        latitude = GeocodeService.new(location).latitude
+        longitude = GeocodeService.new(location).longitude
+        #make call to directions api to get travel time
         #make call to dark sky api to get hourly forecast for travel duration
         binding.pry
       else
