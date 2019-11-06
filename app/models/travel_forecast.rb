@@ -1,5 +1,5 @@
 class TravelForecast
-  attr_reader :id
+  attr_reader :id, :travel_time
 
   def initialize(travel_time, travel_forecast)
     @id = "1"
