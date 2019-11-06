@@ -3,11 +3,7 @@ class DarkSkyService < BaseService
     @latitude = latitude
     @longitude = longitude
   end
-
-  # def response
-  #     JSON.parse(connection.body, symbolize_names: true)
-  # end
-
+  
   private
 
   def connection

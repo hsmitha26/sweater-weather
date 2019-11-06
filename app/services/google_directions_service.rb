@@ -10,10 +10,6 @@ class GoogleDirectionsService < BaseService
 
   private
 
-  # def parsed_response
-  #   JSON.parse(connection.body, symbolize_names: true)
-  # end
-
   def connection
     Faraday.get('https://maps.googleapis.com/maps/api/directions/json?') do |faraday|
                   faraday.params[:key] = ENV['google_directions_api_key']

@@ -6,7 +6,6 @@ class ReverseGeocodeService < BaseService
 
   def response
     parse_response[:results][0][:formatted_address]
-    # JSON.parse(connection.body, symbolize_names: true)[:results][0][:formatted_address]
   end
 
   private
