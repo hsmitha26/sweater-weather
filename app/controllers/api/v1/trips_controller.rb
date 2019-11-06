@@ -8,16 +8,24 @@ class Api::V1::TripsController < ApplicationController
       trip.user_id = user.id
       if trip.save
         forecast_data = TripFacade.new(trip).data_prep
-        render json: TripSerializer.new(forecast_data)
+        render json: TripSerializer.new(forecast_data), status: :ok
       else
-        render :not_found
+        trip_not_found
       end
     else
-      render :unauthorized
+      unauthorized_api
     end
   end
 
   private
+
+  def trip_not_found
+    render status: :not_found
+  end
+
+  def unauthorized_api
+    render status: :unauthorized
+  end
 
   def trip_params
     params.permit(:origin, :destination)
@@ -26,8 +34,8 @@ class Api::V1::TripsController < ApplicationController
   def user_params
     params.permit(:api_key)
   end
-
-  def user_authenticate
-    User.find_by(uuid: user_params[:api_key])
-  end
+  #
+  # def user_authenticate
+  #   User.find_by(uuid: user_params[:api_key])
+  # end
 end
