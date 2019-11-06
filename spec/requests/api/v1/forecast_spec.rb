@@ -10,6 +10,6 @@ describe 'Consume APIs: Google Geocode and Dark Sky' do
     parsed_response = JSON.parse(response.body, symbolize_names: true)
 
     expect(parsed_response[:data][:attributes]).to have_key(:current_weather)
-    expect((parsed_response[:data][:attributes]).count).to eq(5)
+    expect((parsed_response[:data][:attributes]).count).to eq(6)
   end
 end
