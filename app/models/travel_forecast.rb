@@ -10,7 +10,6 @@ class TravelForecast
   def hourly_weather
     @forecast.first(@travel_time.to_i).map do |hour|
       HourlyWeather.new(hour)
-      binding.pry
     end
   end
 end
