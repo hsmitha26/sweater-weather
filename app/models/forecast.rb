@@ -1,9 +1,10 @@
 class Forecast
-  attr_reader :id
+  attr_reader :id, :location
 
-  def initialize(parsed_forecast)
+  def initialize(parsed_forecast, location)
     @id = "0"
     @forecast_data = parsed_forecast
+    @location = location
   end
 
   def current_weather
