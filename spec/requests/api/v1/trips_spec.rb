@@ -11,5 +11,11 @@ describe 'User is authenticated using API key ' do
     }
     post "/api/v1/road_trips", :params => params
     expect(response).to be_successful
+
+    parsed_response = JSON.parse(response.body, symbolize_names: true)
+    expect(parsed_response[:data][:attributes]).to have_key(:travel_time)
+    expect(parsed_response[:data][:attributes]).to have_key(:hourly_weather)
+
+    expect(response).to have_http_status(200)
   end
 end
