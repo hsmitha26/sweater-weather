@@ -1,4 +1,4 @@
-class GeocodeService
+class GeocodeService < BaseService
   attr_reader :latitude, :longitude
 
   def initialize(location)
@@ -8,7 +8,7 @@ class GeocodeService
   end
 
   def response
-    JSON.parse(connection.body, symbolize_names: true)[:results][0][:geometry][:location]
+    parse_response[:results][0][:geometry][:location]
   end
 
   private
