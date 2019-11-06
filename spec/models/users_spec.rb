@@ -6,6 +6,10 @@ describe User, type: :model do
     it { should validate_presence_of(:password) }
   end
 
+  destination 'relationship' do
+    it { should have_many :trips }
+  end
+
   it "tests SecureRandom" do
     uuid = "abcdefgh12345"
     user = User.create(email: "email", password: "password", password_confirmation: 'password')
