@@ -3,13 +3,18 @@ class ForecastFacade
     @location = location
     @latitude = geocode_latitude
     @longitude = geocode_longitude
+    @forecast = forecast_data
   end
 
-  def response
-    @_dark_sky_forecast_data ||= DarkSkyService.new(@latitude, @longitude).response
+  def forecast
+    Forecast.new(@forecast)
   end
 
   private
+
+  def forecast_data
+    @_dark_sky_forecast_data ||= DarkSkyService.new(@latitude, @longitude).response
+  end
 
   def geocode_latitude
     @_google_geocode_latitude ||= GeocodeService.new(@location).latitude
