@@ -6,8 +6,9 @@ class Api::V1::TripsController < ApplicationController
       trip = Trip.new(trip_params)
       trip.user_id = set_user.id
       if trip.save
-        TripFacade.new(trip).fetch_forecast_for_travel_time
+        x = TripFacade.new(trip).fetch_forecast_for_travel_time
         #create serializer and pass data_prep
+        binding.pry
       else
         render :not_found
       end
