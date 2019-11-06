@@ -6,7 +6,7 @@ RSpec.describe Trip, type: :model do
     it { should validate_presence_of(:destination) }
   end
 
-  destination 'relationship' do
+  describe 'relationship' do
     it { should belong_to :user }
   end
 end
