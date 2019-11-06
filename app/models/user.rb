@@ -2,7 +2,7 @@ class User < ApplicationRecord
   before_save :create_uuid
 
   validates :email, uniqueness: true, presence: true
-  validates_presence_of :password, allow_nil: true
+  validates_presence_of :password
 
   has_secure_password
 

@@ -1,6 +1,4 @@
 class ForecastFacade
-  attr_reader :response
-
   def initialize(location)
     @location = location
     @latitude = geocode_latitude
@@ -8,16 +6,16 @@ class ForecastFacade
   end
 
   def response
-    DarkSkyService.new(@latitude, @longitude).response
+    @_dark_sky_forecast_data ||= DarkSkyService.new(@latitude, @longitude).response
   end
 
   private
-  
+
   def geocode_latitude
-    GeocodeService.new(@location).latitude
+    @_google_geocode_latitude ||= GeocodeService.new(@location).latitude
   end
 
   def geocode_longitude
-    GeocodeService.new(@location).longitude
+    @_google_geocode_longitude ||= GeocodeService.new(@location).longitude
   end
 end
