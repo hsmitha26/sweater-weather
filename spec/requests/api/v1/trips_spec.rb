@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'User is authenticated using API key ' do
   it "renders JSON with forecast for travel time/destination" do
-    user = User.create(email: "whatever@example.com", password: "password", password_confirmation: 'password', uuid: "abcdefgh12345")
+    user = User.create(email: "whatever@example.com", password: "password", password_confirmation: 'password')
+    user.update(uuid: "abcdefgh12345")
     params = {
       "origin": "Denver,CO",
       "destination": "Pueblo,CO",
