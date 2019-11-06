@@ -20,7 +20,7 @@ describe 'Create a Session' do
     params = {
       "email": "whatever@example.com",
     }
-    post "/api/v1/users", :params => params
+    post "/api/v1/sessions", :params => params
 
     expect(response).to have_http_status(404)
   end
