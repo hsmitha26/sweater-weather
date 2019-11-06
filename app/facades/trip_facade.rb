@@ -1,10 +1,11 @@
 class TripFacade
   def initialize(trip)
+    @trip = trip
     @destination = trip.destination
     @origin = trip.origin
     @latitude = fetch_latitude
     @longitude = fetch_longitude
-    @travel_time = fetch_travel_time
+    @travel_time = travel_time_in_hours
   end
 
   def fetch_forecast_for_travel_time
@@ -12,6 +13,10 @@ class TripFacade
   end
 
   private
+
+  def travel_time_in_hours
+    @trip.seconds_to_hours(fetch_travel_time)
+  end
 
   def fetch_forecast
     @_forecast ||= DarkSkyService.new(@latitude, @longitude).response
