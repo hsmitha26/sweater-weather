@@ -14,11 +14,11 @@ class TripFacade
     TravelForecast.new(@travel_time, fetch_forecast_for_travel_time)
   end
 
+  private
+
   def fetch_forecast_for_travel_time
     fetch_forecast[:hourly][:data].first(@travel_time)
   end
-
-  private
 
   def travel_time_in_hours
     @trip.seconds_to_hours(fetch_travel_time)
