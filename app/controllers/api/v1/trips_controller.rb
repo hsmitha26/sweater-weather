@@ -6,26 +6,27 @@ class Api::V1::TripsController < ApplicationController
       trip = Trip.new(trip_params)
       trip.user_id = set_user.id
       if trip.save
-        origin = trip.origin
-        destination = trip.destination
-        #make call to geocode api to get lat/lng for destination
-        latitude = GeocodeService.new(destination).latitude
-        longitude = GeocodeService.new(destination).longitude
-        #make call to directions api to get travel time
-        connection = Faraday.get('https://maps.googleapis.com/maps/api/directions/json?') do |faraday|
-                      faraday.params[:key] = ENV['google_directions_api_key']
-                      faraday.params[:origin] = origin
-                      faraday.params[:destination] = destination
-                    end
-        parsed_response = JSON.parse(connection.body, symbolize_names: true)
-        #convert seconds to hours and round up
-        duration_in_seconds = parsed_response[:routes][0][:legs][0][:duration][:value]
-        duration_in_hours = ((duration_in_seconds.to_f)/3600).ceil
-        #make call to dark sky api to get hourly forecast for travel duration
-        forecast = DarkSkyService.new(latitude, longitude).response
-        #get hourly forecast for number of hours.
-        forecast_for_trip = forecast[:hourly][:data].first(duration_in_hours)
-        # binding.pry
+        TripFacade.new(trip).fetch_forecast_for_travel_time
+        # origin = trip.origin
+        # destination = trip.destination
+        # #make call to geocode api to get lat/lng for destination
+        # latitude = GeocodeService.new(destination).latitude
+        # longitude = GeocodeService.new(destination).longitude
+        # #make call to directions api to get travel time
+        # connection = Faraday.get('https://maps.googleapis.com/maps/api/directions/json?') do |faraday|
+        #               faraday.params[:key] = ENV['google_directions_api_key']
+        #               faraday.params[:origin] = origin
+        #               faraday.params[:destination] = destination
+        #             end
+        # parsed_response = JSON.parse(connection.body, symbolize_names: true)
+        # #convert seconds to hours and round up
+        # duration_in_seconds = parsed_response[:routes][0][:legs][0][:duration][:value]
+        # duration_in_hours = ((duration_in_seconds.to_f)/3600).ceil
+        # #make call to dark sky api to get hourly forecast for travel duration
+        # forecast = DarkSkyService.new(latitude, longitude).response
+        # #get hourly forecast for number of hours.
+        # forecast_for_trip = forecast[:hourly][:data].first(duration_in_hours)
+        binding.pry
       else
         render :not_found
       end
